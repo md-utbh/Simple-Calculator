@@ -1,0 +1,135 @@
+:root {
+  --base-color: #1e1e1e;
+  --primary-color: #cd7100ff;
+  --text-color: #f3f3f3;
+  --container-color: #2e2e30;
+  --button-hover-color: #4c4c4c;
+  --display-color: #404040;
+
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--base-color);
+}
+
+.title-header {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  text-align: center;
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+.calculator-container {
+  margin: 20px auto;
+  background-color: var(--container-color);
+  border-radius: 25px;
+  box-shadow: 0 0px 10px rgba(50, 50, 50, 0.5);
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+}
+
+.calculator-display,
+.display {
+  overflow: hidden;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  font-family: var(--body-font);
+  font-size: 2rem;
+  text-align: right;
+  margin: 20px;
+  padding: 10px;
+  background-color: var(--display-color);
+  border: none;
+  border-radius: 10px;
+}
+
+.display {
+  width: 95%;
+  color: var(--text-color);
+  background-color: var(--display-color);
+  transition: color 0.3s, background-color 0.3s;
+}
+
+/* Cerah saat ada angka */
+.display.active {
+  color: #ffffff;
+}
+
+/* History */
+.calculator-history {
+  background: #232323;
+  color: #b2b2b2ff;
+  border-radius: 10px;
+  margin: 10px 20px;
+  padding: 10px;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+#history-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#history-list li {
+  padding: 2px 0;
+  border-bottom: 1px solid #444;
+  font-size: 0.95rem;
+}
+
+/* .calculator-display {
+  border: 1px solid #ccc;
+} */
+
+.button-row-1,
+.button-row-2,
+.button-row-3,
+.button-row-4,
+.button-row-5 {
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+  font-family: var(--body-font);
+  font-size: 1rem;
+}
+
+button {
+  height: 55px;
+  width: 75%;
+  background-color: var(--display-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover-color);
+}
+
+#button-equals {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+button:hover#button-equals {
+  background-color: #965200ff;
+}
+
+footer {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 20px;
+}
