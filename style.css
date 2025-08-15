@@ -39,7 +39,7 @@ body {
   scrollbar-width: none; /* Hide scrollbar in Firefox */
   -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
   font-family: var(--body-font);
-  font-size: 2rem;
+  font-size: 1.75rem;
   text-align: right;
   margin: 20px;
   padding: 10px;
@@ -62,8 +62,8 @@ body {
 
 /* History */
 .calculator-history {
-  background: #232323;
-  color: #b2b2b2ff;
+  background: #202020ff;
+  color: #dadadaff;
   border-radius: 10px;
   margin: 10px 20px;
   padding: 10px;
@@ -80,9 +80,42 @@ body {
 }
 
 #history-list li {
+  margin-bottom: 10px;
   padding: 2px 0;
-  border-bottom: 1px solid #444;
   font-size: 0.95rem;
+}
+
+#history-results {
+  color: #ccc;
+  margin-top: 10px;
+  text-align: start;
+  font-size: 1.25rem;
+  height: 90px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  transition: background-color 0.2s;
+  background-color: var(--container-color);
+}
+
+#history-results:hover {
+  background-color: var(--display-color);
+}
+
+.fa-trash {
+  color: white;
+}
+
+#clear-history {
+  border: none;
+  padding: 2px 8px;
+  background-color: #c51d34;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+#clear-history:hover {
+  background: #d91630ff;
 }
 
 /* .calculator-display {
@@ -102,9 +135,50 @@ body {
   font-size: 1rem;
 }
 
-button {
+#clear,
+#button-percent,
+#button-delete,
+#button-divide,
+#button-multiply,
+#button-minus,
+#button-equals,
+#button-plus {
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   height: 55px;
-  width: 75%;
+  width: 22.5%;
+  background-color: #202020ff;
+  color: var(--text-color);
+}
+
+#clear:hover,
+#button-percent:hover,
+#button-delete:hover,
+#button-divide:hover,
+#button-multiply:hover,
+#button-minus:hover,
+#button-equals:hover,
+#button-plus:hover {
+  background-color: #181818ff;
+}
+
+#button-coma,
+#button-7,
+#button-8,
+#button-9,
+#button-4,
+#button-5,
+#button-6,
+#button-1,
+#button-2,
+#button-3,
+#button-0,
+#button-00 {
+  height: 55px;
+  width: 22.5%;
   background-color: var(--display-color);
   color: var(--text-color);
   border: none;
@@ -114,7 +188,18 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+#button-coma:hover,
+#button-7:hover,
+#button-8:hover,
+#button-9:hover,
+#button-4:hover,
+#button-5:hover,
+#button-6:hover,
+#button-1:hover,
+#button-2:hover,
+#button-3:hover,
+#button-0:hover,
+#button-00:hover {
   background-color: var(--button-hover-color);
 }
 
@@ -123,8 +208,8 @@ button:hover {
   color: var(--text-color);
 }
 
-button:hover#button-equals {
-  background-color: #965200ff;
+#button-equals:hover {
+  background-color: rgba(162, 89, 0, 1);
 }
 
 footer {
