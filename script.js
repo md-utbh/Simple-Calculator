@@ -1,10 +1,23 @@
 const display = document.querySelector('.display');
 const buttons = document.querySelectorAll('.calculator-button button');
 const historyList = document.getElementById('history-list');
+const clearHistoryBtn = document.getElementById('clear-history');
 
 let expression = '';
 let resultDisplayed = false;
 let history = [];
+
+// Load history from localStorage
+function loadHistory() {
+  const saved = localStorage.getItem('calc-history');
+  history = saved ? JSON.parse(saved) : [];
+  renderHistory();
+}
+
+// Save history to localStorage
+function saveHistory() {
+  localStorage.setItem('calc-history', JSON.stringify(history));
+}
 
 function formatNumber(num) {
   if (num === '' || num === 'Error' || isNaN(num)) return num;
@@ -34,20 +47,62 @@ function updateDisplay(value) {
 }
 
 function addHistory(expr, result) {
-  history.unshift(`${formatExpression(expr)} = ${formatNumber(result)}`);
-  if (history.length > 10) history.pop();
+  history.unshift({ expr, result });
+  if (history.length > 20) history.pop();
+  saveHistory();
   renderHistory();
 }
 
 function renderHistory() {
   historyList.innerHTML = '';
-  history.forEach((item) => {
+  history.forEach((item, idx) => {
     const li = document.createElement('li');
-    li.textContent = item;
+    li.innerHTML = `
+      <button id="history-results"><span>${formatExpression(item.expr)} = </span>
+      <span class="history-result" data-idx="${idx}" title="Use Result">${formatNumber(item.result)}</span></button>
+    `;
+    li.style.cursor = 'pointer';
+    li.onclick = () => {
+      const val = history[idx].result.toString();
+      if (resultDisplayed || display.value === '0') {
+        expression = val;
+      } else {
+        expression += val;
+      }
+      resultDisplayed = false;
+      updateDisplay(expression);
+    };
     historyList.appendChild(li);
+  });
+
+  // Event listener untuk klik hasil history
+  document.querySelectorAll('.history-result').forEach((btn) => {
+    btn.onclick = (e) => {
+      const idx = btn.getAttribute('data-idx');
+      const val = history[idx].result.toString();
+      expression = val;
+      resultDisplayed = false;
+      updateDisplay(expression);
+    };
   });
 }
 
+// Tombol clear history
+clearHistoryBtn.onclick = () => {
+  history = [];
+  saveHistory();
+  renderHistory();
+};
+
+clearHistoryBtn.onclick = () => {
+  if (window.confirm('Are you sure want to clear history?')) {
+    history = [];
+    saveHistory();
+    renderHistory();
+  }
+};
+
+// Kalkulator utama
 function appendToExpression(val) {
   if (resultDisplayed) {
     expression = '';
@@ -201,6 +256,6 @@ function getOperator(id) {
   }
 }
 
-// Inisialisasi tampilan
+// Inisialisasi tampilan dan history
 updateDisplay('');
-renderHistory();
+loadHistory();
