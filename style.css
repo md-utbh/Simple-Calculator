@@ -118,9 +118,9 @@ body {
   background: #d91630ff;
 }
 
-/* .calculator-display {
-  border: 1px solid #ccc;
-} */
+.calculator-display {
+  border: 1px solid #777777;
+}
 
 .button-row-1,
 .button-row-2,
@@ -212,9 +212,15 @@ body {
   background-color: rgba(162, 89, 0, 1);
 }
 
-footer {
+footer,
+a {
   text-align: center;
   font-size: 1rem;
   color: #666;
   margin-top: 20px;
+  transition: color 0.3s;
 }
+a:hover {
+  color: var(--primary-color);
+}
+
